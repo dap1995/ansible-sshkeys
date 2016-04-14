@@ -1,0 +1,14 @@
+ - hosts: catolica
+   strategy: free
+   remote_user: root
+#   accelerate: true
+
+   tasks:
+
+    - name: configurando chaves SSH autorizadas
+      authorized_key:
+        user: "{{ ansible_user_id }}"
+        key: "{{ item }}"
+      with_file:
+        - /etc/ansible/ssh-keys/id_rsa.pub
+
